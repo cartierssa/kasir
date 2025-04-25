@@ -1,0 +1,43 @@
+.sidebar {
+  width: 200px;
+  z-index: 1000;
+}
+
+.sidebar .nav-item + .nav-item {
+  margin-top: 6px;
+}
+
+.sidebar .nav-link {
+  color: #2c3e50;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+  font-size: 0.85rem;
+  /* Menyesuaikan ukuran teks pada sidebar */
+  padding: 8px 10px;
+}
+
+.sidebar .nav-item + .nav-item {
+  margin-top: 4px;
+  /* Mengurangi jarak antar item */
+}
+
+.sidebar .nav-link:hover {
+  background-color: rgba(25, 135, 84, 0.1);
+  /* hijau muda */
+  color: #198754;
+}
+
+.sidebar .nav-link.active {
+  background-color: rgba(25, 135, 84, 0.2);
+  /* aktif = lebih kuat */
+  color: #198754;
+  font-weight: 600;
+}
+
+#logoutModal .modal-body {
+  border-bottom: none;
+}
+#logoutModal .modal-footer {
+  border-top: none;
+}
