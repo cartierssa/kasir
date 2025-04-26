@@ -9,10 +9,6 @@ $activePage = 'dashboard';
 
 require_once 'koneksi.php';
 
-// Hitung jumlah karyawan
-$stmt_karyawan = $conn->query("SELECT COUNT(*) FROM users WHERE role = 'karyawan'");
-$jumlah_karyawan = $stmt_karyawan->fetch_row()[0];
-
 // Hitung jumlah produk
 $stmt_produk = $conn->query("SELECT COUNT(*) FROM produk");
 $jumlah_produk = $stmt_produk->fetch_row()[0];
@@ -37,6 +33,21 @@ $pendapatan_tahun_ini = $stmt_pendapatan_tahun_ini->fetch_row()[0] ?: 0;
 // Hitung jumlah pembayaran yang belum dibayar berdasarkan status "menunggu pembayaran"
 $stmt_pembayaran_belum_dibayar = $conn->query("SELECT COUNT(*) FROM pesanan WHERE status = 'menunggu pembayaran'");
 $jumlah_pembayaran_belum_dibayar = $stmt_pembayaran_belum_dibayar->fetch_row()[0];
+
+// Ambil total pendapatan per bulan (tanpa memisahkan tahun)
+$stmt_pendapatan_per_bulan = $conn->query("
+  SELECT MONTH(created_at) AS bulan, SUM(total) AS pendapatan
+  FROM pesanan
+  WHERE status = 'selesai'
+  GROUP BY MONTH(created_at)
+  ORDER BY MONTH(created_at)
+");
+$pendapatan_per_bulan = array_fill(0, 12, 0); // Inisialisasi array dengan 0 untuk setiap bulan
+
+// Mengisi array dengan pendapatan per bulan
+while ($row = $stmt_pendapatan_per_bulan->fetch_assoc()) {
+    $pendapatan_per_bulan[$row['bulan'] - 1] = $row['pendapatan']; // Simpan pendapatan pada bulan yang sesuai
+}
 
 
 ?>
@@ -123,15 +134,6 @@ $jumlah_pembayaran_belum_dibayar = $stmt_pembayaran_belum_dibayar->fetch_row()[0
 
     <!-- Stat Cards -->
     <div class="d-flex flex-wrap gap-2 mb-3">
-      <div class="card stat-card d-flex align-items-center px-3 py-2">
-        <div class="d-flex align-items-center">
-          <i class="bi bi-people-fill stat-icon"></i>
-          <div class="stat-text">
-            <h6>JUMLAH KARYAWAN</h6>
-            <h3><?= $jumlah_karyawan ?></h3>
-          </div>
-        </div>
-      </div>
 
       <div class="card stat-card d-flex align-items-center px-3 py-2">
         <div class="d-flex align-items-center">
@@ -196,61 +198,43 @@ $jumlah_pembayaran_belum_dibayar = $stmt_pembayaran_belum_dibayar->fetch_row()[0
 
     </div>
 
-    <!-- Chart Card
+    <!-- Chart Card -->
     <div class="card shadow-sm">
       <div class="card-body">
         <h6 class="text-center fw-semibold mb-3">
-          Jumlah Pendapatan per Tahun (2023 - 2024)
+          Jumlah Pendapatan per Bulan
         </h6>
         <canvas id="revenueChart" height="120"></canvas>
       </div>
-    </div> -->
+    </div> 
   </div>
 
   <script>
-    const ctx = document.getElementById("revenueChart").getContext("2d");
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "Mei",
-          "Jun",
-          "Jul",
-          "Agu",
-          "Sep",
-          "Okt",
-          "Nov",
-          "Des",
-        ],
+   // Data pendapatan per bulan dari PHP
+   const pendapatanPerBulan = <?php echo json_encode($pendapatan_per_bulan); ?>;
+
+const ctx = document.getElementById("revenueChart").getContext("2d");
+new Chart(ctx, {
+    type: "line",
+    data: {
+        labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
         datasets: [{
-            label: "Jumlah Pendapatan (Tahun 2023)",
-            data: Array(12).fill(0),
+            label: "Jumlah Pendapatan per Bulan",
+            data: pendapatanPerBulan,
             borderColor: "green",
             fill: false,
             tension: 0.3,
-          },
-          {
-            label: "Jumlah Pendapatan (Tahun 2024)",
-            data: Array(12).fill(0),
-            borderColor: "orange",
-            fill: false,
-            tension: 0.3,
-          },
-        ],
-      },
-      options: {
+        }],
+    },
+    options: {
         responsive: true,
         scales: {
-          y: {
-            beginAtZero: true,
-          },
+            y: {
+                beginAtZero: true,
+            },
         },
-      },
-    });
+    },
+});
   </script>
 </body>
 

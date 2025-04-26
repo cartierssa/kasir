@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <!-- Meta dan stylesheet sama persis dengan halaman data user -->
     <meta charset="UTF-8" />
     <title>Tambah User - Kedai Kito</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,7 +17,6 @@
       rel="stylesheet"
     />
     <style>
-      /* CSS sama persis dengan halaman data user */
       body {
         font-family: "Poppins", sans-serif;
         font-size: 0.85rem;

@@ -5,7 +5,7 @@ if (isset($_SESSION['user_id'])) {
   header("Location: dashboard.php");
   exit();
 }
-require_once 'koneksi.php'; // File koneksi database
+require_once 'koneksi.php'; 
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -48,10 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    body { background-color: #f8f9fa; min-height: 100vh; }
+    body { background-image: url('assets/background/kedai.jpg');  background-size: cover;  min-height: 100vh; }
     .login-card { max-width: 400px; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
     .password-toggle { cursor: pointer; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); z-index: 5; }
   </style>
+  
 </head>
 <body class="d-flex align-items-center">
   <div class="container">

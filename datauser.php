@@ -50,10 +50,8 @@ require_once 'koneksi.php';
 
     .user-table td {
       font-size: 0.8rem;
-      /* Menyesuaikan ukuran font pada cell tabel */
     }
 
-    /* Styling untuk search bar dan tombol tambah user */
     .search-container {
       display: flex;
       justify-content: space-between;
@@ -61,14 +59,12 @@ require_once 'koneksi.php';
       margin-bottom: 20px;
     }
 
-    /* Menggunakan kelas Bootstrap untuk spacing dan ukuran elemen */
     .search-container .input-group {
       width: 40%;
     }
 
     .search-container .input-group input {
       font-size: 0.85rem;
-      /* Mengurangi ukuran font pada input */
     }
 
     .search-container .form-control {
@@ -94,10 +90,10 @@ require_once 'koneksi.php';
 
     .search-container .filter-container select {
       font-size: 0.85rem;
-      /* Mengurangi ukuran font pada filter */
+
     }
 
-    /* Styling untuk filter di bawah tabel */
+
     .filter-container {
       display: flex;
       justify-content: flex-start;

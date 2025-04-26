@@ -2,8 +2,6 @@
 session_start();
 require_once 'koneksi.php';
 
-
-
 // FUNGSI GENERATE INVOICE ID
 function generateInvoiceId($conn)
 {

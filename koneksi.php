@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$user = "root"; // Sesuaikan dengan username database
-$pass = ""; // Sesuaikan dengan password database
+$user = "root";
+$pass = ""; 
 $db = "kedaikito";
 
 $conn = new mysqli($host, $user, $pass, $db);

@@ -53,10 +53,8 @@ $kategori = $conn->query("SELECT * FROM kategori")->fetch_all(MYSQLI_ASSOC);
 
     .user-table td {
       font-size: 0.8rem;
-      /* Menyesuaikan ukuran font pada cell tabel */
     }
 
-    /* Styling untuk search bar dan tombol tambah user */
     .search-container {
       display: flex;
       justify-content: space-between;
@@ -64,14 +62,12 @@ $kategori = $conn->query("SELECT * FROM kategori")->fetch_all(MYSQLI_ASSOC);
       margin-bottom: 20px;
     }
 
-    /* Menggunakan kelas Bootstrap untuk spacing dan ukuran elemen */
     .search-container .input-group {
       width: 40%;
     }
 
     .search-container .input-group input {
       font-size: 0.85rem;
-      /* Mengurangi ukuran font pada input */
     }
 
     .search-container .form-control {
@@ -97,10 +93,9 @@ $kategori = $conn->query("SELECT * FROM kategori")->fetch_all(MYSQLI_ASSOC);
 
     .search-container .filter-container select {
       font-size: 0.85rem;
-      /* Mengurangi ukuran font pada filter */
+
     }
 
-    /* Tambahan CSS Khusus */
     .product-card {
       border: 1px solid #e9ecef;
       border-radius: 12px;

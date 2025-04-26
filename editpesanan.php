@@ -4,7 +4,7 @@ if (!isset($_SESSION['user_id'])) {
   header("Location: login.php");
   exit();
 }
-
+$activePage = 'editpesanan';
 require_once 'koneksi.php';
 
 // Ambil ID pesanan dari URL
@@ -107,35 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       font-size: 0.85rem;
     }
 
-    .sidebar {
-      width: 200px;
-      z-index: 1000;
-    }
-
-    .sidebar .nav-item+.nav-item {
-      margin-top: 4px;
-    }
-
-    .sidebar .nav-link {
-      color: #2c3e50;
-      padding: 8px 10px;
-      border-radius: 6px;
-      transition: background 0.2s ease;
-    }
-
-    .sidebar .nav-link:hover {
-      background-color: rgba(25, 135, 84, 0.1);
-      /* hijau muda */
-      color: #198754;
-    }
-
-    .sidebar .nav-link.active {
-      background-color: rgba(25, 135, 84, 0.2);
-      /* aktif = lebih kuat */
-      color: #198754;
-      font-weight: 600;
-    }
-
     .user-table th {
       font-weight: 600;
       background-color: #f8f9fa;
@@ -144,10 +115,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     .user-table td {
       font-size: 0.8rem;
-      /* Menyesuaikan ukuran font pada cell tabel */
     }
 
-    /* Styling untuk search bar dan tombol tambah user */
     .search-container {
       display: flex;
       justify-content: space-between;
@@ -155,14 +124,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       margin-bottom: 20px;
     }
 
-    /* Menggunakan kelas Bootstrap untuk spacing dan ukuran elemen */
     .search-container .input-group {
       width: 40%;
     }
 
     .search-container .input-group input {
       font-size: 0.85rem;
-      /* Mengurangi ukuran font pada input */
     }
 
     .search-container .form-control {
@@ -188,10 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     .search-container .filter-container select {
       font-size: 0.85rem;
-      /* Mengurangi ukuran font pada filter */
     }
 
-    /* Styling untuk filter di bawah tabel */
     .filter-container {
       display: flex;
       justify-content: flex-start;
@@ -204,20 +169,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       font-size: 0.85rem;
     }
 
-    /* Ubah warna pagination agar serasi hijau */
     .pagination .page-link {
       color: #198754;
-      /* teks biasa */
     }
 
     .pagination .page-link:hover {
       background-color: rgba(25, 135, 84, 0.1);
-      /* hijau muda */
     }
 
     .pagination .page-item.active .page-link {
       background-color: #198754;
-      /* warna aktif */
       border-color: #198754;
       color: #fff;
     }
@@ -226,40 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body class="bg-light">
   <!-- Sidebar -->
-  <div
-    class="sidebar bg-white shadow-sm position-fixed top-0 start-0 h-100 p-3">
-    <div class="text-center mb-3">
-      <h5>Kedai Kito</h5>
-      <small class="text-muted">Aplikasi Point of Sale</small>
-    </div>
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link active fw-bold bg-success bg-opacity-25 rounded"
-          href="datauser.php"><i class="bi bi-person-lines-fill me-2"></i> Data User</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="datakategori.php"><i class="bi bi-tags-fill me-2"></i> Data Kategori</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dataproduk.php"><i class="bi bi-box-seam me-2"></i> Data Produk</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="datapesanan.php"><i class="bi bi-card-list me-2"></i> Data Pesanan</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pos.php"><i class="bi bi-bag-check-fill me-2"></i> POS</a>
-      </li>
-      <li class="nav-item mt-auto"> <!-- mt-auto untuk mendorong ke bawah -->
-        <a class="nav-link text-danger" href="logout.php">
-          <i class="bi bi-box-arrow-left me-2"></i> Logout
-        </a>
-      </li>
-    </ul>
-  </div>
+  <?php include 'components/sidebar.php'; ?>
 
   <!-- Main Content -->
   <div class="main-content ms-220 py-3" style="margin-left: 220px">
@@ -344,9 +272,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </tr>
               <?php endforeach; ?>
               <tr class="table-light">
-                <!-- Gabung kolom 1 & 2 -->
                 <td colspan="2"></td>
-                <!-- Kolom harga -->
                 <td class="text-start fw-semibold">Total Harga</td>
                 <!-- Kolom total harga -->
                 <td class="fw-bold">Rp <?= number_format($total_harga, 0, ',', '.') ?></td>

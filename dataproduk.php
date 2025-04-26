@@ -79,10 +79,10 @@ $produk = $result->fetch_all(MYSQLI_ASSOC);
 
     .user-table td {
       font-size: 0.8rem;
-      /* Menyesuaikan ukuran font pada cell tabel */
+ 
     }
 
-    /* Styling untuk search bar dan tombol tambah user */
+
     .search-container {
       display: flex;
       justify-content: space-between;
@@ -90,14 +90,14 @@ $produk = $result->fetch_all(MYSQLI_ASSOC);
       margin-bottom: 20px;
     }
 
-    /* Menggunakan kelas Bootstrap untuk spacing dan ukuran elemen */
+
     .search-container .input-group {
       width: 40%;
     }
 
     .search-container .input-group input {
       font-size: 0.85rem;
-      /* Mengurangi ukuran font pada input */
+
     }
 
     .search-container .form-control {
@@ -123,10 +123,10 @@ $produk = $result->fetch_all(MYSQLI_ASSOC);
 
     .search-container .filter-container select {
       font-size: 0.85rem;
-      /* Mengurangi ukuran font pada filter */
+ 
     }
 
-    /* Styling untuk filter di bawah tabel */
+
     .filter-container {
       display: flex;
       justify-content: flex-start;
@@ -139,20 +139,19 @@ $produk = $result->fetch_all(MYSQLI_ASSOC);
       font-size: 0.85rem;
     }
 
-    /* Ubah warna pagination agar serasi hijau */
     .pagination .page-link {
       color: #198754;
-      /* teks biasa */
+  
     }
 
     .pagination .page-link:hover {
       background-color: rgba(25, 135, 84, 0.1);
-      /* hijau muda */
+
     }
 
     .pagination .page-item.active .page-link {
       background-color: #198754;
-      /* warna aktif */
+
       border-color: #198754;
       color: #fff;
     }

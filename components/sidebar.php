@@ -23,11 +23,11 @@
           <i class="bi bi-speedometer2 me-2"></i> Dashboard
         </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link <?= ($activePage == 'datauser') ? 'active fw-bold bg-success bg-opacity-25 rounded' : '' ?>" href="datauser.php">
           <i class="bi bi-person-lines-fill me-2"></i> Data User
         </a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link <?= ($activePage == 'datakategori') ? 'active fw-bold bg-success bg-opacity-25 rounded' : '' ?>" href="datakategori.php">
           <i class="bi bi-tags-fill me-2"></i> Data Kategori
